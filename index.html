@@ -6,8 +6,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
     <style>
         body {
-            background: #ffffff; /* White background */
-            color: #333;
+            background: white ; /* White background */
+            color: black;
             text-align: center;
             font-family: 'Poppins', sans-serif;
             display: flex;
@@ -15,6 +15,13 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+        }
+
+        /* Fix mobile-specific dark background issue */
+        @media (max-width: 768px) {
+            body {
+                background-color: white !important; /* Explicit override for mobile */
+            }
         }
 
         /* Welcome text with responsive font size */
