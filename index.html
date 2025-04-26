@@ -18,13 +18,14 @@
             overflow: hidden;
         }
 
+        /* Welcome text animations */
         .welcome {
             font-size: 2.5em;
             font-weight: bold;
             letter-spacing: 1px;
             opacity: 0;
             transform: translateY(-20px);
-            animation: fadeIn 1.5s forwards, slideUp 1s forwards;
+            animation: fadeIn 1.5s forwards, floating 3s infinite alternate ease-in-out;
         }
 
         @keyframes fadeIn {
@@ -32,29 +33,33 @@
             to { opacity: 1; }
         }
 
-        @keyframes slideUp {
-            from { transform: translateY(20px); }
-            to { transform: translateY(0); }
+        @keyframes floating {
+            from { transform: translateY(0); }
+            to { transform: translateY(10px); }
         }
 
-        /* Home image styling */
+        /* Hover animation for home image */
         .home-image {
-            width: 300px;
+            width: 350px;
             border-radius: 10px;
             margin-top: 20px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .home-image:hover {
+            transform: scale(1.05); /* Slight zoom effect */
         }
     </style>
 </head>
 <body>
 
     <h1 class="welcome">Hi there, this is Sharan and Pooja, we welcome you, to our home! We are delighted to have you here.
-    Feel free to make yourself comfortable and enjoy this space we've created.
-    May this visit be filled with laughter, great conversations,
-    and a sense of belonging. Relax, explore, and let us make this a wonderful experience for you!
-    Enjoy your visit, and let's make great memories together.
-    We’re so happy you're here!</h1>
-    
+        Feel free to make yourself comfortable and enjoy this space we've created.
+        May this visit be filled with laughter, great conversations,
+        and a sense of belonging. Relax, explore, and let us make this a wonderful experience for you!
+        Enjoy your visit, and let's make great memories together.
+        We’re so happy you're here!</h1>
     <img src="home.jpg" class="home-image" alt="Home Picture">
 
     <!-- Autoplay Welcome Audio -->
@@ -64,9 +69,20 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var audio = document.getElementById("welcomeAudio");
-            audio.volume = 1.0;  // Ensure volume is max
-            audio.play().catch(error => console.log("Autoplay blocked:", error));
+        var audio = document.getElementById("welcomeAudio");
+
+        // Ensure volume is max
+        audio.volume = 1.0;
+
+        // Attempt autoplay (will work on some browsers)
+        audio.play().catch(() => {
+            console.log("Autoplay blocked. Waiting for user interaction...");
+        });
+
+        // Ensure audio plays when user interacts
+        document.addEventListener("click", function() {
+            audio.play();
+        });
         });
 
         // Redirect after 5 seconds
