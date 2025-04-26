@@ -19,21 +19,28 @@
 
         /* Welcome text with responsive font size */
             .welcome {
-                font-size: 2.2vw; /* Slightly smaller and adaptive */
-                font-weight: bold;
-                opacity: 0;
-                transform: translateY(-20px);
-                animation: fadeIn 1.5s forwards;
-                background: linear-gradient(45deg, #3a1c71, #d76d77, #ffaf7b);
-                -webkit-background-clip: text;
-                color: transparent;
-            }
+                    font-size: 2.2vw; /* Adaptive font sizing */
+                    font-weight: bold;
+                    opacity: 0;
+                    transform: translateY(-20px);
+                    animation: fadeIn 1.5s forwards, glowEffect 2s infinite alternate; /* Smooth glowing effect */
+                    background: linear-gradient(45deg, #3a1c71, #d76d77, #ffaf7b);
+                    -webkit-background-clip: text;
+                    color: transparent;
+                    text-shadow: 2px 2px 8px rgba(58, 28, 113, 0.5); /* Subtle shadow for depth */
+                }
 
             /* Mobile optimization */
             @media (max-width: 768px) {
                 .welcome {
                     font-size: 5vw; /* Adjusts smaller screens without looking too large */
                 }
+            }
+
+            /* Glowing effect */
+            @keyframes glowEffect {
+                0% { text-shadow: 2px 2px 8px rgba(58, 28, 113, 0.5); }
+                100% { text-shadow: 2px 2px 15px rgba(215, 109, 119, 0.7); }
             }
 
             /* Fade-in animation */
