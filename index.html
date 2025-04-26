@@ -52,6 +52,13 @@
         }
     }
 
+    /* Glowing effect */
+    @keyframes glowEffect {
+            0% { text-shadow: 2px 2px 6px rgba(58, 28, 113, 0.3); }
+            100% { text-shadow: 2px 2px 10px rgba(215, 109, 119, 0.5); }
+        }
+
+
     /* Fade-in animation */
     @keyframes fadeIn {
         0% { opacity: 0; transform: translateY(-20px); }
@@ -119,7 +126,7 @@
 </head>
 <body>
 
-    <h1 class="welcome">Hi there, this is Sharan and Pooja, we welcome you, to our home! We are delighted to have you here.
+    <h1 class="welcome" color="white" background-color="white !important">Hi there, this is Sharan and Pooja, we welcome you, to our home! We are delighted to have you here.
         Feel free to make yourself comfortable and enjoy this space we've created.
         May this visit be filled with laughter, great conversations,
         and a sense of belonging. Relax, explore, and let us make this a wonderful experience for you!
