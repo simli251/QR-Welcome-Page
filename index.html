@@ -15,41 +15,91 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            overflow: hidden;
         }
 
-        /* Welcome text animations */
-        .welcome {
-            font-size: 2.5em;
-            font-weight: bold;
-            letter-spacing: 1px;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: fadeIn 1.5s forwards, floating 3s infinite alternate ease-in-out;
-        }
+        /* Welcome text with responsive font size */
+            .welcome {
+                font-size: 2.2vw; /* Slightly smaller and adaptive */
+                font-weight: bold;
+                opacity: 0;
+                transform: translateY(-20px);
+                animation: fadeIn 1.5s forwards;
+                background: linear-gradient(45deg, #3a1c71, #d76d77, #ffaf7b);
+                -webkit-background-clip: text;
+                color: transparent;
+            }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+            /* Mobile optimization */
+            @media (max-width: 768px) {
+                .welcome {
+                    font-size: 5vw; /* Adjusts smaller screens without looking too large */
+                }
+            }
 
-        @keyframes floating {
-            from { transform: translateY(0); }
-            to { transform: translateY(10px); }
-        }
+            /* Fade-in animation */
+            @keyframes fadeIn {
+                0% { opacity: 0; transform: translateY(-30px); }
+                100% { opacity: 1; transform: translateY(0); }
+            }
 
-        /* Hover animation for home image */
-        .home-image {
-            width: 350px;
-            border-radius: 10px;
+            /* Floating effect */
+            @keyframes floating {
+                0% { transform: translateY(0); }
+                100% { transform: translateY(15px); }
+            }
+
+            /* Home image hover effect */
+            .home-image {
+                width: 350px;
+                border-radius: 12px;
+                margin-top: 20px;
+                box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
+                transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+            }
+
+            .home-image:hover {
+                transform: scale(1.08);
+                box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+            }
+
+
+        /* Tempting button */
+        .play-button {
             margin-top: 20px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.5s ease-in-out;
+            padding: 15px 30px;
+            font-size: 1.4em;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(45deg, #ff512f, #dd2476);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            animation: pulse 1.5s infinite alternate;
         }
 
-        .home-image:hover {
-            transform: scale(1.05); /* Slight zoom effect */
+        @keyframes pulse {
+            from { transform: scale(1); box-shadow: 0px 4px 12px rgba(255, 81, 47, 0.6); }
+            to { transform: scale(1.05); box-shadow: 0px 6px 18px rgba(255, 81, 47, 1); }
         }
+
+        .google-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            background: linear-gradient(45deg, #007AFF, #00A0E9);
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .google-link:hover {
+            transform: scale(1.05);
+            background: linear-gradient(45deg, #005BBB, #0080D6);
+        }
+
     </style>
 </head>
 <body>
@@ -62,33 +112,38 @@
         We’re so happy you're here!</h1>
     <img src="home.jpg" class="home-image" alt="Home Picture">
 
-    <!-- Autoplay Welcome Audio -->
+
+    <!-- Tempting button to play audio -->
+    <button class="play-button" onclick="playAudio()">Tap to Hear Your Welcome Message</button>
+
+    <!-- Google Maps Button -->
+        <a href="https://maps.app.goo.gl/NMfDEWtXvvQ3iaas8" target="_blank" class="google-link">
+            📍 Find Us on Google Maps
+        </a>
+
+    <!-- Audio -->
     <audio id="welcomeAudio">
         <source src="welcome.mp3" type="audio/mpeg">
+<!--        <source src="welcome.ogg" type="audio/ogg">-->
     </audio>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        function playAudio() {
         var audio = document.getElementById("welcomeAudio");
 
-        // Ensure volume is max
+        // Reset playback time to 0 and ensure full message plays
+        audio.pause();
+        audio.currentTime = 0;
         audio.volume = 1.0;
+        audio.play().catch(error => console.log("Autoplay blocked:", error));
 
-        // Attempt autoplay (will work on some browsers)
-        audio.play().catch(() => {
-            console.log("Autoplay blocked. Waiting for user interaction...");
-        });
-
-        // Ensure audio plays when user interacts
-        document.addEventListener("click", function() {
-            audio.play();
-        });
-        });
+        console.log("Audio playback restarted from the beginning.");
+    }
 
         // Redirect after 5 seconds
         setTimeout(function() {
             window.location.href = "https://maps.app.goo.gl/NMfDEWtXvvQ3iaas8"; // Google Maps link
-        }, 5000);
+        }, 25000);
     </script>
 
 </body>
