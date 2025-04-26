@@ -33,16 +33,17 @@
 
     /* Welcome text with responsive font size */
     .welcome {
-        font-size: min(5vw, 28px); /* Ensures text isn't too small on mobile */
-        font-weight: bold;
-        opacity: 0;
-        transform: translateY(-20px);
-        animation: fadeIn 1.5s forwards, glowEffect 2s infinite alternate;
-        background: linear-gradient(45deg, #3a1c71, #d76d77, #ffaf7b);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent; /* Fallback ensures text visibility */
-        text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3); /* Higher contrast for readability */
-    }
+            font-size: min(5vw, 28px); /* Adaptive sizing */
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeIn 1.5s forwards; /* Remove unnecessary hover effect */
+            background: linear-gradient(45deg, #3a1c71, #d76d77, #ffaf7b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: #333; /* Ensures readability even if gradient fails */
+            text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4); /* Stronger shadow for brightness */
+        }
+
 
     /* Mobile-specific improvements */
     @media (max-width: 768px) {
