@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <title>Welcome Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
     <style>
-        /* Smooth background gradient */
         body {
-            background: linear-gradient(135deg, #1a1a2e, #0f3460);
-            color: white;
+            background: #ffffff; /* White background */
+            color: #333;
             text-align: center;
             font-family: 'Poppins', sans-serif;
             display: flex;
@@ -19,14 +18,13 @@
             overflow: hidden;
         }
 
-        /* Welcome text animation */
         .welcome {
-            font-size: 3em;
+            font-size: 2.5em;
             font-weight: bold;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             opacity: 0;
-            transform: translateY(-50px);
-            animation: fadeIn 2s forwards, slideUp 1s forwards;
+            transform: translateY(-20px);
+            animation: fadeIn 1.5s forwards, slideUp 1s forwards;
         }
 
         @keyframes fadeIn {
@@ -35,46 +33,29 @@
         }
 
         @keyframes slideUp {
-            from { transform: translateY(50px); }
+            from { transform: translateY(20px); }
             to { transform: translateY(0); }
         }
 
-        /* Glowing animated button */
-        .button {
+        /* Home image styling */
+        .home-image {
+            width: 300px;
+            border-radius: 10px;
             margin-top: 20px;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            font-weight: bold;
-            color: white;
-            border: none;
-            cursor: pointer;
-            background: linear-gradient(45deg, #ff512f, #dd2476);
-            border-radius: 30px;
-            animation: glow 1.5s infinite alternate;
-        }
-
-        @keyframes glow {
-            from { box-shadow: 0 0 10px rgba(255, 81, 47, 0.5); }
-            to { box-shadow: 0 0 20px rgba(255, 81, 47, 1); }
-        }
-
-        /* Logo animation */
-        .logo {
-            width: 120px;
-            margin-top: 20px;
-            animation: spin 6s infinite linear;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
 
-    <h1 class="welcome">Welcome to Our Home!</h1>
-    <img src="logo.png" class="logo" alt="Logo">
+    <h1 class="welcome">Hi there, this is Sharan and Pooja, we welcome you, to our home! We are delighted to have you here.
+    Feel free to make yourself comfortable and enjoy this space we've created.
+    May this visit be filled with laughter, great conversations,
+    and a sense of belonging. Relax, explore, and let us make this a wonderful experience for you!
+    Enjoy your visit, and let's make great memories together.
+    We’re so happy you're here!</h1>
+    
+    <img src="home.jpg" class="home-image" alt="Home Picture">
 
     <!-- Autoplay Welcome Audio -->
     <audio id="welcomeAudio">
@@ -83,15 +64,12 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("welcomeAudio").play();
+            var audio = document.getElementById("welcomeAudio");
+            audio.volume = 1.0;  // Ensure volume is max
+            audio.play().catch(error => console.log("Autoplay blocked:", error));
         });
-    </script>
 
-    <!-- Animated Button -->
-    <button class="button">Redirecting in 5 seconds...</button>
-
-    <!-- Auto-Redirect to Google Maps -->
-    <script>
+        // Redirect after 5 seconds
         setTimeout(function() {
             window.location.href = "https://maps.app.goo.gl/NMfDEWtXvvQ3iaas8"; // Google Maps link
         }, 5000);
@@ -99,4 +77,3 @@
 
 </body>
 </html>
-
