@@ -5,119 +5,123 @@
     <title>Welcome Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
     <style>
-        html, body {
-            background: white ; /* White background */
-            color: black;
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+    /* Force White Background in All Viewports */
+    html, body {
+        background: white !important; /* Ensures white background everywhere */
+        color: black !important; /* Guarantees readable text */
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    /* Prevent Containers from Inheriting Dark Background */
+    .container, .wrapper, .content {
+        background-color: white !important;
+    }
+
+    /* Ensure Mobile Overrides Stay Consistent */
+    @media (max-width: 768px) {
+        * {
+            background-color: white !important;
+            color: black !important;
         }
+    }
 
+    /* Welcome text with responsive font size */
+    .welcome {
+        font-size: min(5vw, 28px); /* Ensures text isn't too small on mobile */
+        font-weight: bold;
+        opacity: 0;
+        transform: translateY(-20px);
+        animation: fadeIn 1.5s forwards, glowEffect 2s infinite alternate;
+        background: linear-gradient(45deg, #3a1c71, #d76d77, #ffaf7b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent; /* Fallback ensures text visibility */
+        text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3); /* Higher contrast for readability */
+    }
 
-        /* Fix mobile-specific dark background issue */
-        @media (max-width: 768px) {
-            body {
-                background-color: white !important; /* Explicit override for mobile */
-            }
+    /* Mobile-specific improvements */
+    @media (max-width: 768px) {
+        .welcome {
+            font-size: min(6vw, 24px); /* Slightly larger for visibility */
+            text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.4); /* Stronger contrast for mobile */
         }
+    }
 
-        /* Welcome text with responsive font size */
-            .welcome {
-                font-size: min(5vw, 28px); /* Ensures text isn't too small on mobile */
-                font-weight: bold;
-                opacity: 0;
-                transform: translateY(-20px);
-                animation: fadeIn 1.5s forwards, glowEffect 2s infinite alternate; /* Smooth glowing effect */
-                background: linear-gradient(45deg, #3a1c71, #d76d77, #ffaf7b);
-                -webkit-background-clip: text;
-                color: transparent;
-                text-shadow: 2px 2px 10px rgba(58, 28, 113, 0.7); /* Slightly stronger glow */
-            }
+    /* Glowing effect */
+    @keyframes glowEffect {
+        0% { text-shadow: 2px 2px 8px rgba(58, 28, 113, 0.5); }
+        100% { text-shadow: 2px 2px 15px rgba(215, 109, 119, 0.7); }
+    }
 
-            /* Mobile-specific improvements */
-            @media (max-width: 768px) {
-                .welcome {
-                    font-size: min(6vw, 24px); /* Slightly larger on mobile for visibility */
-                    text-shadow: 2px 2px 12px rgba(215, 109, 119, 0.8); /* Improve text contrast */
-                }
-            }
+    /* Fade-in animation */
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(-30px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
 
+    /* Floating effect */
+    @keyframes floating {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(15px); }
+    }
 
-            /* Glowing effect */
-            @keyframes glowEffect {
-                0% { text-shadow: 2px 2px 8px rgba(58, 28, 113, 0.5); }
-                100% { text-shadow: 2px 2px 15px rgba(215, 109, 119, 0.7); }
-            }
+    /* Home image hover effect */
+    .home-image {
+        width: 350px;
+        border-radius: 12px;
+        margin-top: 20px;
+        box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
+        transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    }
 
-            /* Fade-in animation */
-            @keyframes fadeIn {
-                0% { opacity: 0; transform: translateY(-30px); }
-                100% { opacity: 1; transform: translateY(0); }
-            }
+    .home-image:hover {
+        transform: scale(1.08);
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+    }
 
-            /* Floating effect */
-            @keyframes floating {
-                0% { transform: translateY(0); }
-                100% { transform: translateY(15px); }
-            }
+    /* Tempting button */
+    .play-button {
+        margin-top: 20px;
+        padding: 15px 30px;
+        font-size: 1.4em;
+        font-weight: bold;
+        color: white;
+        background: linear-gradient(45deg, #ff512f, #dd2476);
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        animation: pulse 1.5s infinite alternate;
+    }
 
-            /* Home image hover effect */
-            .home-image {
-                width: 350px;
-                border-radius: 12px;
-                margin-top: 20px;
-                box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
-                transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-            }
+    @keyframes pulse {
+        from { transform: scale(1); box-shadow: 0px 4px 12px rgba(255, 81, 47, 0.6); }
+        to { transform: scale(1.05); box-shadow: 0px 6px 18px rgba(255, 81, 47, 1); }
+    }
 
-            .home-image:hover {
-                transform: scale(1.08);
-                box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
-            }
+    .google-link {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 24px;
+        font-size: 1.2em;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        background: linear-gradient(45deg, #007AFF, #00A0E9);
+        border-radius: 8px;
+        transition: transform 0.3s ease-in-out;
+    }
 
+    .google-link:hover {
+        transform: scale(1.05);
+        background: linear-gradient(45deg, #005BBB, #0080D6);
+    }
+</style>
 
-        /* Tempting button */
-        .play-button {
-            margin-top: 20px;
-            padding: 15px 30px;
-            font-size: 1.4em;
-            font-weight: bold;
-            color: white;
-            background: linear-gradient(45deg, #ff512f, #dd2476);
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            animation: pulse 1.5s infinite alternate;
-        }
-
-        @keyframes pulse {
-            from { transform: scale(1); box-shadow: 0px 4px 12px rgba(255, 81, 47, 0.6); }
-            to { transform: scale(1.05); box-shadow: 0px 6px 18px rgba(255, 81, 47, 1); }
-        }
-
-        .google-link {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 24px;
-            font-size: 1.2em;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-            background: linear-gradient(45deg, #007AFF, #00A0E9);
-            border-radius: 8px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .google-link:hover {
-            transform: scale(1.05);
-            background: linear-gradient(45deg, #005BBB, #0080D6);
-        }
-
-    </style>
 </head>
 <body>
 
