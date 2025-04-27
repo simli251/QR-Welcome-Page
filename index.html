@@ -59,24 +59,26 @@
         transform: scale(1.1);
     }
 
-    /* Welcome text */
-    .welcome {
-        font-size: min(5vw, 28px);
-        font-weight: bold;
-        margin-top: 5px;
-    }
+    /* Welcome text with minimal gap */
+.welcome {
+    font-size: min(5vw, 28px);
+    font-weight: bold;
+    margin-top: -200px; /* Reduces space significantly */
+    padding-top: 0px; /* Removes extra padding */
+    opacity: 0;
+    transform: translateY(-5px);
+    animation: fadeIn 1.5s forwards;
+    color: black;
+    text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4);
+}
 
-    /* Welcome text with responsive font size */
-    .welcome {
-            font-size: min(5vw, 28px); /* Adaptive sizing */
-            font-weight: bold;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: fadeIn 1.5s forwards; /* Removes glow effect */
-            color: black; /* Solid black text for clarity */
-            text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4); /* Subtle depth without blur */
+
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
-
 
 
     /* Mobile-specific improvements */
